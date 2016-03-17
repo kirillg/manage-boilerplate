@@ -1,0 +1,104 @@
+extends inc/layout
+
+block content
+  section.content-page.current
+    .content(style= { "display" : "block"})
+      .row.content-header
+        .col-xs-12
+          h1 Users
+          a.btn.btn-success.pull-right.new
+            i.icon-budicon-473
+            New User
+
+        .col-xs-12
+          .cues-container
+            .use-case-box.is-active
+              .explainer-text
+                br
+                span.explainer-text-content An easy to use UI to help administrators manage user identities including password resets, creating and provisioning, blocking and deleting users 
+                a.toggle
+                  span.toggle-text Learn more
+                  i.icon
+            br
+            br
+          form.js-users-search.advanced-search-control
+            span.search-area
+              i.icon-budicon-489
+              input.js-user-input.user-input(spellcheck="false", type="text", value="group:'CoolKids'" placeholder="Search for users") 
+            span.controls.pull-right
+              .js-select.custom-select
+                span Search by
+                span.truncate(data-select-value="") Lucene Syntax (advanced)
+                i.icon-budicon-460
+                select(data-mode="")
+                  option(value="user") User
+                  option(value="email") Email
+                  option(value="group") Group
+                  option(value="identities.provider") Identity Provider
+                  option(value="identities.connection") Connection
+                  option(value="login_count") Logins Count
+                  option(value="last_login") Last login
+                  option(value="phone_number") Phone number
+                  option(selected="selected" value="lucene") Lucene Syntax (advanced)
+              button(type="reset") Reset 
+                i.icon-budicon-471
+        .col-xs-12
+          .js-lucene-hint.help-block.invisible
+            To perform your search, press 
+            span.keyboard-button enter. 
+            For more information about Lucene syntax, please 
+            a(href="https://auth0.com/docs/users-search") read our docs.
+
+  
+      
+      .dataTables_wrapper#users-list_wrapper(role='grid')
+        table(
+          class=['table', 'data-table', 'dataTable'] 
+          style={'table-layout': 'fixed'}
+          )
+          thead
+            tr
+              th(width="6%", data-column="picture")            
+              th.pointer.sortable(width="22%", data-column='name') Name
+                i.icon-budicon-462.sort-arrow.hidden            
+              th.pointer.sortable(width="22%", data-column='email') Email
+                i.icon-budicon-462.sort-arrow.hidden            
+              th.pointer.sortable(width="15%", data-column='lastLogin') Latest Login
+                i.icon-budicon-460.sort-arrow            
+              th.pointer.sortable(width="15%", data-column='loginsCount') # of Logins
+                i.icon-budicon-462.sort-arrow           
+              th.pointer.sortable(width="17%", data-column='connection') Connection
+                i.icon-budicon-462.sort-arrow.hidden            
+              
+      
+          tbody
+            tr
+              td
+                a
+                  img.img-circle(width="32", alt="", src="https://s.gravatar.com/avatar/3e82d4717e59f6ce943d91e8c158a4e2?s=480&amp;r=pg&amp;d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fki.png")
+              td.truncate(title='kirill') Kirill Gavrylyuk
+              td.truncate(title='kirillg_public@hotmail.com') kirillg_public@hotmail.com
+              td never
+              td 0
+              td.truncate Username-Password-Authentication
+            tr
+              td
+                a
+                  img.img-circle(width="32", alt="", src="https://s.gravatar.com/avatar/3e82d4717e59f6ce943d91e8c158a4e2?s=480&amp;r=pg&amp;d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fki.png")
+              td.truncate(title='kirill') Matias Woloski
+              td.truncate(title='woloski@auth0.com') woloski@auth0.com
+              td never
+              td 0
+              td.truncate Username-Password-Authentication
+
+        .actions-group.text-right.js-users-pagination.hide
+          .pull-right.js-navigation
+            a.btn.btn-xs.btn-default.js-prev-page.hide
+              span.icon-budicon-463
+            a.btn.btn-xs.btn-default.js-next-page.hide
+              span.icon-budicon-461
+          form.pull-left
+            span Page &nbsp;
+            input(class=['form-control', 'js-go-to-page'], style={'text-align': 'center', display: 'inline-block', 'max-width': '45px;'}, type="text", value="1")
+            span &nbsp; of 
+            span.js-total-pages 1

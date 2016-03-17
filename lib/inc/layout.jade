@@ -43,4 +43,46 @@ html(lang='en', hola_ext_inject='disabled')
                     a(role='menuitem', tabindex='-1', href='/logout') Logout
     .container
       .row
-        block content
+        #sidebar.col-xs-2
+          .sidebar-fixed
+            ul
+              li
+                i.icon.icon-budicon-497
+                span Dashboard
+              li
+                i.icon.icon-budicon-143
+                span Apps / APIs
+              li
+                i.icon.icon-budicon-339
+                span Connections
+              li
+                i.icon.icon-budicon-292
+                span Users
+              li.active
+                a
+                  i.icon.icon-budicon-292
+                  span Groups
+              li
+                i.icon.icon-budicon-173
+                span Rules
+              li
+                i.icon.icon-budicon-243
+                span Multifactor Auth
+              li
+                i.icon.icon-budicon-725
+                span Login Page
+              li
+                i.icon.icon-budicon-778
+                span Emails
+              li
+                i.icon.icon-budicon-754
+                span Logs
+              li
+                i.icon.icon-budicon-324
+                span Extensions
+              li
+                i.icon.icon-budicon-324
+                span Get Support
+
+        .col-xs-10.wrapper
+          block content

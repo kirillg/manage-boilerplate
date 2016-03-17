@@ -2,32 +2,72 @@ extends inc/layout
 
 block content
   section.content-page.current
-    .col-xs-12
-      .row
-        .col-xs-12.content-header
-          ol.breadcrumb
-            li
-              a(href='#') Auth0 Dashboard
-            li
-              a(href='#') Extensions
-          h1.pull-left Sample Extension
+    .row.content-header
+      .col-xs-12
+        h1 Groups
+        a.btn.btn-success.pull-right.new
+          i.icon-budicon-473
+          New Group
+      .col-xs-12
+        .cues-container
+          .use-case-box.is-active
+            .explainer-text
+              br
+              span.explainer-text-content User groups provide an easy way to oranize your users and manage their access on case by case basis. You can create, delete, and manage your user groups here.               
+              a.toggle
+                span.toggle-text Learn more
+                i.icon
+                br
+                br
+      .data
 
-      .widget-title.title-with-nav-bars
-        ul.nav.nav-tabs
-          li.active
-            a(data-toggle='tab', href='#profile', aria-expanded='true')
-              span.tab-title Profile
-          li
-            a(data-toggle='tab', href='#messages')
-              span.tab-title Messages
-          li
-            a(data-toggle='tab', href='#settings')
-              span.tab-title Settings
-
-      #content-area.tab-content
-        #profile.tab-pane.active
-          | Profile
-        #messages.tab-pane
-          | Messages
-        #settings.tab-pane
-          | Settings
+    .dataTables_wrapper#users-list_wrapper(role='grid')
+      table(
+        class=['table', 'data-table', 'dataTable'] 
+        style={'table-layout': 'fixed'}
+        )
+        thead
+          tr            
+            th.pointer.sortable(width="60%", data-column='name') Name
+              i.icon-budicon-462.sort-arrow            
+            th.pointer.sortable(width="30%", data-column='userCount') # of Users
+              i.icon-budicon-462.sort-arrow.hidden            
+            th.pointer(width="10%", class='pointer')
+        tbody
+          tr
+            td.truncate(title='boringkids') BoringKids
+            td 
+              a(href="/users.html")
+                2
+            td.actions
+              ul.inline-list
+                li(title="" data-toggle="tooltip")
+                  a
+                    i.icon-budicon-471
+          tr
+            td.truncate(title='coolkids') CoolKids
+            td 50
+            td.actions
+              ul.inline-list
+                li(title="" data-toggle="tooltip")
+                  a
+                    i.icon-budicon-471
+          tr
+            td.truncate(title='managers') Managers
+            td 2
+            td.actions
+              ul.inline-list
+                li(title="" data-toggle="tooltip")
+                  a
+                    i.icon-budicon-471
+      .actions-group.text-right.js-users-pagination.hide
+        .pull-right.js-navigation
+          a.btn.btn-xs.btn-default.js-prev-page.hide
+            span.icon-budicon-463
+          a.btn.btn-xs.btn-default.js-next-page.hide
+            span.icon-budicon-461
+        form.pull-left
+          span Page &nbsp;
+          input(class=['form-control', 'js-go-to-page'], style={'text-align': 'center', display: 'inline-block', 'max-width': '45px;'}, type="text", value="1")
+          span &nbsp; of 
+          span.js-total-pages 1
